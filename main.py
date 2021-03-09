@@ -294,9 +294,27 @@ def get_data():
             without_diabetes_mellitus = pd.read_csv(dir_path + "/without_cholesterol_without_Diabetes_Mellitus.csv")
             df1 = without_diabetes_mellitus
             risk = df1.loc[(df1["Age"] == age_category) & (df1["Smoking"] == smoking_value) & (df1["Gender"] == gender_value) & (df1["SBP"]==sbp_value)]
+
+    # Output risk value
+
+    if risk["Risk"].values[0]== 0:
+        risk_value = "Low"
+
+    elif risk["Risk"].values[0]== 1:
+        risk_value = "Moderate"
+
+    elif risk["Risk"].values[0]== 2:
+        risk_value = "Moderately high"
+
+    elif risk["Risk"].values[0]== 3:
+        risk_value = "High"
+
+    else :
+        risk_value = "Severe"
+        
             
 
-    return jsonify({'risk value' : str(risk["Risk"].values[0])})
+    return jsonify({'risk value' : risk_value})
 
 
     
