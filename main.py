@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
 import pandas as pd
-
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+#print(dir_path)
 
 #chadsvasc
 app = Flask(__name__)
@@ -267,14 +269,14 @@ def get_data():
     #patient with diabetics and with cholestrol
     if diabetes == "yes":
         if cholestrol_value != "no":
-            with_diabetes_mellitus = pd.read_csv("C:/Users/HP/Desktop/susitk_med_app/data/with_cholesterol_Diabetes_Mellitus.csv")
+            with_diabetes_mellitus = pd.read_csv(dir_path + "/with_cholesterol_Diabetes_Mellitus.csv")
             df1 = with_diabetes_mellitus
             risk = df1.loc[(df1["Age"] == age_category) & (df1["Smoking"] == smoking_value) & (df1["Gender"] == gender_value) & (df1["SBP"]==sbp_value) & (df1["Cholestrol"] == cholestrol_value)]
             
             
     #patient with diabetics and without cholestrol
         else:
-            without_diabetes_mellitus = pd.read_csv("C:/Users/HP/Desktop/susitk_med_app/data/without_cholestrol_Diabetes_Mellitus.csv")
+            without_diabetes_mellitus = pd.read_csv(dir_path + "/without_cholestrol_Diabetes_Mellitus.csv")
             df1 = without_diabetes_mellitus
             risk = df1.loc[(df1["Age"] == age_category) & (df1["Smoking"] == smoking_value) & (df1["Gender"] == gender_value) & (df1["SBP"]==sbp_value)]
             
@@ -282,14 +284,14 @@ def get_data():
     #patient without diabetics and with cholestrol
     else:
         if cholestrol_value != "no":
-            with_diabetes_mellitus = pd.read_csv("C:/Users/HP/Desktop/susitk_med_app/data/with_cholesterol_without_Diabetes_Mellitus.csv")
+            with_diabetes_mellitus = pd.read_csv(dir_path + "/with_cholesterol_without_Diabetes_Mellitus.csv")
             df1 = with_diabetes_mellitus
             risk = df1.loc[(df1["Age"] == age_category) & (df1["Smoking"] == smoking_value) & (df1["Gender"] == gender_value) & (df1["SBP"]==sbp_value) & (df1["Cholestrol"] == cholestrol_value)]
             
 
     #patient without diabetics and without cholestrol
         else:
-            without_diabetes_mellitus = pd.read_csv("C:/Users/HP/Desktop/susitk_med_app/data/without_cholesterol_without_Diabetes_Mellitus.csv")
+            without_diabetes_mellitus = pd.read_csv(dir_path + "/without_cholesterol_without_Diabetes_Mellitus.csv")
             df1 = without_diabetes_mellitus
             risk = df1.loc[(df1["Age"] == age_category) & (df1["Smoking"] == smoking_value) & (df1["Gender"] == gender_value) & (df1["SBP"]==sbp_value)]
             
