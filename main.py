@@ -7,11 +7,11 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 #chadsvasc
 app = Flask(__name__)
 
-@app.route("/get_chadsvasc", methods = ['GET'])
+@app.route("/get_chadsvasc", methods = ['POST'])
 
 def get_chadsvasc():
 
-    if request.method == "GET":
+    if request.method == "POST":
         req_json = request.json
         congestive_heart_failure = req_json["congestive heart failure"]
         hypertension = req_json["hypertension"]
@@ -90,11 +90,11 @@ def get_chadsvasc():
     return jsonify({'CHADSVASC result' : chadsvasc_result})    
 
 #has_bled
-@app.route("/get_has_bled_score", methods = ['GET'])
+@app.route("/get_has_bled_score", methods = ['POST'])
 
 def get_has_bled_score():
 
-    if request.method == "GET":
+    if request.method == "POST":
         req_json = request.json
         hypertension = req_json["hypertension_mmHg"]
         abnormal_renal = req_json["abnormal_renal_mg/dL"]
@@ -183,11 +183,11 @@ def get_has_bled_score():
 
 
 # Cholestrol and diabetes mellitus       
-@app.route("/get_data", methods = ['GET'])
+@app.route("/get_data", methods = ['POST'])
 
 def get_data():
 
-    if request.method == "GET":
+    if request.method == "POST":
         req_json = request.json
         diabetes = req_json["diabetes"]
         cholestrol_value = req_json["cholestrol_value"]
