@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 import pandas as pd
-import os 
+import os
+import json
 dir_path = os.path.dirname(os.path.realpath(__file__))
 #print(dir_path)
 
@@ -12,7 +13,7 @@ app = Flask(__name__)
 def get_chadsvasc():
 
     if request.method == "POST":
-        req_json = request.json
+        req_json = json.loads(request.data)
         congestive_heart_failure = req_json["congestive heart failure"]
         hypertension = req_json["hypertension"]
         age = req_json["age"]
@@ -80,14 +81,8 @@ def get_chadsvasc():
         else:
             chadsvasc_result = "High"
                    
-        
-    print(sex_value)
-    print("hyper",hypertension_value)
-    print("age", age_value)
-    print("diabetes_mellitus", diabetes_mellitus_value)
-    print("stroke_or_TIA_or_thromboembolism", stroke_or_TIA_or_thromboembolism_value)
-    print("sex", sex_value)
-    return jsonify({'CHADSVASC result' : chadsvasc_result})    
+
+    return jsonify({'CHADSVASC_result' : chadsvasc_result})    
 
 #has_bled
 @app.route("/get_has_bled_score", methods = ['POST'])
@@ -95,7 +90,7 @@ def get_chadsvasc():
 def get_has_bled_score():
 
     if request.method == "POST":
-        req_json = request.json
+        req_json = json.loads(request.data)
         hypertension = req_json["hypertension_mmHg"]
         abnormal_renal = req_json["abnormal_renal_mg/dL"]
         liver_function = req_json["liver_function"]
@@ -179,7 +174,7 @@ def get_has_bled_score():
         
         
     
-    return jsonify({'HAS-BLED score' : has_bled_value})
+    return jsonify({'HAS_BLED_score' : has_bled_value})
 
 
 # Cholestrol and diabetes mellitus       
@@ -188,7 +183,7 @@ def get_has_bled_score():
 def get_data():
 
     if request.method == "POST":
-        req_json = request.json
+        req_json = json.load(request.data)
         diabetes = req_json["diabetes"]
         cholestrol_value = req_json["cholestrol_value"]
         age = req_json["age"]
@@ -196,7 +191,6 @@ def get_data():
         gender_value = req_json["gender_value"]
         sbp_value = req_json["sbp_value"]
 
-    print('fffff')
 
 
     #age catorization
@@ -306,7 +300,7 @@ def get_data():
         risk_value = "Moderate"
 
     elif risk["Risk"].values[0]== 2:
-        risk_value = "Moderately high"
+        risk_value = "Moderately_high"
 
     elif risk["Risk"].values[0]== 3:
         risk_value = "High"
@@ -316,7 +310,7 @@ def get_data():
         
             
 
-    return jsonify({'risk value' : risk_value})
+    return jsonify({'risk_value' : risk_value})
 
 
     
