@@ -196,6 +196,8 @@ def get_data():
         gender_value = req_json["gender_value"]
         sbp_value = req_json["sbp_value"]
 
+    print('fffff')
+
 
     #age catorization
         if age < 40:

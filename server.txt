@@ -1,0 +1,1 @@
+export FLASK_APP=/root/susitk_med_app/med_app/main.py; flask run --host=159.89.204.117
