@@ -183,7 +183,7 @@ def get_has_bled_score():
 def get_data():
 
     if request.method == "POST":
-        req_json = json.load(request.data)
+        req_json = json.loads(request.data)
         diabetes = req_json["diabetes"]
         cholestrol_value = req_json["cholestrol_value"]
         age = req_json["age"]
